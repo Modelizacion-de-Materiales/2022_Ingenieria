@@ -15,12 +15,15 @@ def matriz(Nx,Ny,lim,limtipo):
     for k in range(N):
         if k==0: #Vertice AB
             if limtipo['A']=='Flujo' and limtipo['B']=='Temp':#Si me paro en un vértice con temperatura y
+                #MDF esto es al reves ! si el borde tiene cc de flujo, imponer el borde con temperatura!
                 b[k]=lim['A']                             #flujo, le asigno la temperatura del que la posea.
             elif limtipo['A']=='Temp' and limtipo['B']=='Flujo':
+                #MDF esto es al reves ! si el borde tiene cc de flujo, imponer el borde con temperatura!
                 b[k]=lim['B']
             else: #Sólo queda el caso de las 2 temperaturas, donde se promedian.
                 b[k]=(lim['A']+lim['B'])/2
 
+                #MDF lo mismo te debe pasar en los demas vértices
         elif k==Nx-1: #Vértice BC
             if limtipo['B']=='Flujo' and limtipo['C']=='Temp':
                 b[k]=lim['C']
