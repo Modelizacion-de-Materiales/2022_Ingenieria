@@ -1,0 +1,3 @@
+Para graficar desplazamientos, fuerzas y tensiones por separado y no
+superpuestas con las otras, ir al final y definir las celdas que no quiera
+graficar como RAW.
