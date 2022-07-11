@@ -83,7 +83,13 @@ def Kglobal(MN, MC, E, A, glxn):
     return Kg
 
 
+# mdf_comment : cuál es la diferencia entre esta función y la de arriba?
+# mdf_comment: que la de arriva no agarra una matriz local de argumento y esta s'i.
+# mdf_comment : lo que podes hacer es agregar a la de arriva un argumento que  puede ser por ejemplo
+# una funci'on o none:
+
 def MG(MN, MC, glxn, ME):
+# def MG(MN, MC, glxn, ME = None)
     """
     Entradas:
       MN   = Matriz de nodos
@@ -96,8 +102,16 @@ def MG(MN, MC, glxn, ME):
     """
     n_nodos = MN.shape[0]
     n_element, n_nxe = MC.shape
+    MG = np.zeros([glxn*n_nodos, glxn*n_nodos])   # linea repetida
     MG = np.zeros([glxn*n_nodos, glxn*n_nodos])
-    MG = np.zeros([glxn*n_nodos, glxn*n_nodos])
+# mdfcomment entonces cuando llegas a este lugar podes actuar segun el valor:
+#   if ME is None:
+#       Ke = Kelental ()
+#   elif type(ME) == func : # si es una funcion la llamas, cuidado con los nombres
+#       Ke = ME()
+#   elif type(ME) == np.ndarray  # si es una matriz directamente la usas
+#       Ke = ME
+
     for e in range (n_element):
         for i in range(n_nxe):
             rangoi = np.linspace(i*glxn, (i+1)*glxn-1, glxn).astype(int)
@@ -107,3 +121,5 @@ def MG(MN, MC, glxn, ME):
                 rangonj = np.linspace(MC[e, j]*glxn, (MC[e, j]+1)*glxn-1, glxn).astype(int)
                 MG[np.ix_(rangoni, rangonj)] += ME[np.ix_(rangoi, rangoj)]
     return MG
+
+# de esa manera te evitas tener una funci'on repetida o casi igual a otra. 
