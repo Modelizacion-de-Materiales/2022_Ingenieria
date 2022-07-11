@@ -13,7 +13,7 @@ def solve(K, r, s, Us, Fr):
     mef.solve devuelve 2 vectores, uno con las fuerzas en cada nodo (F) y otro con los desplazamientos respectivamente (U)
     #
     """
-    N = np.shape(K)[1]  # Nro. de nodos * glxn
+    N=np.shape(K)[1]  # Nro. de nodos * glxn
     F = np.zeros([N,1])
     U = np.zeros([N,1])
     U[s] = Us
